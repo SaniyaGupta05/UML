@@ -287,19 +287,19 @@
 
           <div class="glance-grid">
             <div class="glance-item">
-              <div class="glance-number">35+ Years</div>
+              <div class="glance-number" data-count-target="35" data-count-suffix="+ Years">35+ Years</div>
               <div class="glance-label">Manufacturing Experience</div>
             </div>
             <div class="glance-item">
-              <div class="glance-number">250+</div>
+              <div class="glance-number" data-count-target="250" data-count-suffix="+">250+</div>
               <div class="glance-label">Customers Across India &amp; International market</div>
             </div>
             <div class="glance-item">
-              <div class="glance-number">2005</div>
+              <div class="glance-number" data-count-target="2005" data-count-start="1950">2005</div>
               <div class="glance-label">In-house Gamma Irradiation Facility</div>
             </div>
             <div class="glance-item">
-              <div class="glance-number">ISO 9001:2015</div>
+              <div class="glance-number">ISO 9001:<span class="glance-count-inline" data-count-target="2015" data-count-start="2000">2015</span></div>
               <div class="glance-label">Certified Quality Management System</div>
             </div>
           </div>
@@ -560,51 +560,79 @@
       <div class="container">
         <div class="why-grid">
 
-          <!-- Row 1, Col 1-2: Header Card -->
+          <!-- Row 1, Col 1-2: Signature Brand Header Card -->
           <div class="why-card why-card-header">
-            <span class="why-eyebrow">Why Choose Us</span>
-            <h2 class="why-title">What Sets Us Apart</h2>
+            <div class="why-header-top">
+              <span class="why-eyebrow">Why Choose Us</span>
+              <h2 class="why-title">What Sets Us Apart</h2>
+              <p class="why-header-desc">Over three decades of zero-defect engineering, precision cleanrooms, and global regulatory compliance safeguarding critical parenteral pharmaceuticals.</p>
+            </div>
           </div>
 
           <!-- Row 1, Col 3: Card 01 -->
           <div class="why-card why-feature-card">
             <div class="why-card-top">
-              <img src="assets/why-icon-01-trans.png" alt="Advanced Manufacturing" class="why-card-icon" loading="lazy">
+              <div class="why-icon-badge">
+                <img src="assets/why-icon-01-trans.png" alt="Advanced Manufacturing" class="why-card-icon" loading="lazy">
+              </div>
               <span class="why-card-num">01</span>
             </div>
-            <h3 class="why-card-text">Advanced Manufacturing &amp; Cleanroom Facilities</h3>
+            <div class="why-card-body">
+              <h3 class="why-card-title">Advanced Manufacturing &amp; Cleanroom Facilities</h3>
+            </div>
           </div>
 
           <!-- Row 1, Col 4: Card 02 -->
           <div class="why-card why-feature-card">
             <div class="why-card-top">
-              <img src="assets/why-icon-02-trans.png" alt="Quality Assurance" class="why-card-icon" loading="lazy">
+              <div class="why-icon-badge">
+                <img src="assets/why-icon-02-trans.png" alt="Quality Assurance" class="why-card-icon" loading="lazy">
+              </div>
               <span class="why-card-num">02</span>
             </div>
-            <h3 class="why-card-text">Strong Quality Assurance &amp; Testing</h3>
+            <div class="why-card-body">
+              <h3 class="why-card-title">Strong Quality Assurance &amp; Testing</h3>
+            </div>
           </div>
 
           <!-- Row 2, Col 1: Card 03 -->
           <div class="why-card why-feature-card">
             <div class="why-card-top">
-              <img src="assets/why-icon-03-trans.png" alt="Packaging Support" class="why-card-icon" loading="lazy">
+              <div class="why-icon-badge">
+                <img src="assets/why-icon-03-trans.png" alt="Packaging Support" class="why-card-icon" loading="lazy">
+              </div>
               <span class="why-card-num">03</span>
             </div>
-            <h3 class="why-card-text">End-to-End Packaging Support</h3>
+            <div class="why-card-body">
+              <h3 class="why-card-title">End-to-End Packaging Support</h3>
+            </div>
           </div>
 
           <!-- Row 2, Col 2: Card 04 -->
           <div class="why-card why-feature-card">
             <div class="why-card-top">
-              <img src="assets/why-icon-04-trans.png" alt="Customer Service" class="why-card-icon" loading="lazy">
+              <div class="why-icon-badge">
+                <img src="assets/why-icon-04-trans.png" alt="Customer Service" class="why-card-icon" loading="lazy">
+              </div>
               <span class="why-card-num">04</span>
             </div>
-            <h3 class="why-card-text">Responsive Technical &amp; Customer Service</h3>
+            <div class="why-card-body">
+              <h3 class="why-card-title">Responsive Technical &amp; Customer Service</h3>
+            </div>
           </div>
 
-          <!-- Row 2, Col 3-4: Factory Aerial Photo -->
+          <!-- Row 2, Col 3-4: Factory Aerial Photo with Feature Overlay -->
           <div class="why-card why-card-factory">
             <img src="assets/why-factory-aerial.jpg" alt="Universal Medicap Limited Manufacturing Facility" class="why-factory-img" loading="lazy">
+            <div class="why-factory-overlay">
+              <div class="why-factory-badge">
+                <svg class="why-badge-pin" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>Vadodara, Gujarat • Integrated Campus</span>
+              </div>
+              <p class="why-factory-caption">50,000+ sq. ft. In-House Tool Room, Cleanrooms &amp; Gamma Sterilization</p>
+            </div>
           </div>
 
         </div>

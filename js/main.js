@@ -1,5 +1,5 @@
 /**
- * Universal Medicap Limited (UML) - Interactive Split Hero Experience
+ * Universal Medicap Limited (UML) - Interactive split hero & sitewide interactions
  * Built according to user reference layout and official UML brand guidelines.
  */
 
@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initHeaderScroll();
   initFormSubmission();
+  initScrollReveal();
+  initScrollspy();
+  initAnimatedCounters();
+  initGlanceCounter();
 });
 
 /* ==========================================================================
@@ -163,7 +167,7 @@ function initProductsCarousel() {
 }
 
 /* ==========================================================================
-   3. MODALS
+   4. MODALS
    ========================================================================== */
 function initModals() {
   const modal = document.getElementById('sampleModal');
@@ -195,7 +199,7 @@ function initModals() {
 }
 
 /* ==========================================================================
-   4. STICKY HEADER SCROLL SHADOW
+   5. STICKY HEADER SCROLL SHADOW
    ========================================================================== */
 function initHeaderScroll() {
   const header = document.querySelector('.main-navbar-area');
@@ -211,7 +215,7 @@ function initHeaderScroll() {
 }
 
 /* ==========================================================================
-   5. SAMPLE INQUIRY FORM SUBMISSION
+   6. SAMPLE INQUIRY FORM SUBMISSION
    ========================================================================== */
 function initFormSubmission() {
   const form = document.getElementById('sampleModalForm');
@@ -233,4 +237,180 @@ function initFormSubmission() {
       if (modal) modal.classList.remove('active');
     }, 900);
   });
+}
+
+/* ==========================================================================
+   7. SCROLL-DRIVEN REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+   ========================================================================== */
+function initScrollReveal() {
+  if (!('IntersectionObserver' in window)) return;
+
+  // Target key section headers, cards, and containers
+  const targets = document.querySelectorAll([
+    '.about-header-card',
+    '.about-lawn-card',
+    '.core-services-header',
+    '.core-services-grid',
+    '.products-header-wrap',
+    '.quality-header-wrap',
+    '.quality-grid',
+    '.why-card-header',
+    '.why-feature-card',
+    '.why-card-factory',
+    '.mfg-header',
+    '.mfg-feature-card',
+    '.mfg-card',
+    '.partners-header',
+    '.clients-marquee-wrapper',
+    '.feedback-header',
+    '.feedback-cards-grid',
+    '.news-header',
+    '.news-featured-card',
+    '.news-item-card',
+    '.partner-cta-card',
+    '.footer-dark-card'
+  ].join(', '));
+
+  targets.forEach((el, index) => {
+    el.classList.add('reveal-on-scroll');
+    // Add staggered delay class if inside a grid
+    if (el.parentElement && (el.parentElement.classList.contains('core-services-grid') ||
+        el.parentElement.classList.contains('quality-grid') ||
+        el.parentElement.classList.contains('why-grid') ||
+        el.parentElement.classList.contains('feedback-cards-grid') ||
+        el.parentElement.classList.contains('news-list-col'))) {
+      el.parentElement.classList.add('reveal-stagger');
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  targets.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   8. ACTIVE NAV SCROLLSPY
+   ========================================================================== */
+function initScrollspy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-menu-links a');
+  if (!sections.length || !navLinks.length) return;
+
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    const scrollPos = window.scrollY + 180;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    if (currentId) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === `#${currentId}` || (currentId === 'heroSlider' && href === '#')) {
+          link.classList.add('active');
+        }
+      });
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   9. ANIMATED NUMBER COUNTERS FOR WHY-CHOOSE-US
+   ========================================================================== */
+function initAnimatedCounters() {
+  const numbers = document.querySelectorAll('.why-card-num');
+  if (!numbers.length || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.style.transform = 'scale(1.15)';
+        el.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        setTimeout(() => {
+          el.style.transform = 'scale(1)';
+        }, 300);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  numbers.forEach(num => observer.observe(num));
+}
+
+/* ==========================================================================
+   10. COUNT-UP ANIMATION FOR "UML AT A GLANCE"
+   ========================================================================== */
+function initGlanceCounter() {
+  const glanceBlock = document.querySelector('.glance-section-block');
+  if (!glanceBlock || !('IntersectionObserver' in window)) return;
+
+  const counterElements = glanceBlock.querySelectorAll('[data-count-target]');
+  if (!counterElements.length) return;
+
+  let hasAnimated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        animateCounters(counterElements);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(glanceBlock);
+
+  function animateCounters(elements) {
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutExpo curve for smooth decelerating rollout
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+      elements.forEach(el => {
+        const target = parseFloat(el.getAttribute('data-count-target'));
+        const start = parseFloat(el.getAttribute('data-count-start')) || 0;
+        const prefix = el.getAttribute('data-count-prefix') || '';
+        const suffix = el.getAttribute('data-count-suffix') || '';
+
+        const currentVal = Math.round(start + (target - start) * ease);
+        el.textContent = `${prefix}${currentVal}${suffix}`;
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        // Ensure final exact text is set
+        elements.forEach(el => {
+          const target = el.getAttribute('data-count-target');
+          const prefix = el.getAttribute('data-count-prefix') || '';
+          const suffix = el.getAttribute('data-count-suffix') || '';
+          el.textContent = `${prefix}${target}${suffix}`;
+        });
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
 }
