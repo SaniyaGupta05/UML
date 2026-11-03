@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="96" viewBox="0 0 56 96">
+  <g fill="none" stroke="#D1D8E0" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Center Hexagon -->
+    <path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z" />
+    <!-- Vertical connector -->
+    <path d="M28 64 L28 96" />
+    <!-- Lower staggered hexagon segments -->
+    <path d="M0 48 L0 80 L28 96 L56 80 L56 48" />
+  </g>
+</svg>

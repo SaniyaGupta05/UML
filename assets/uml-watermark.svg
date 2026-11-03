@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <g stroke="#E46931" stroke-linecap="round" stroke-linejoin="round" opacity="0.32">
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(0)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(45)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(90)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(135)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(180)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(225)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(270)" />
+    <path d="M -10,36 L -10,66 A 10,10 0 0,0 10,66 L 10,36" stroke-width="5.2" transform="translate(100,100) rotate(315)" />
+    <!-- Central Circle -->
+    <circle cx="100" cy="100" r="38" stroke-width="5.2" />
+    <!-- Reticle Ticks -->
+    <line x1="76" y1="100" x2="90" y2="100" stroke-width="4.7" />
+    <line x1="110" y1="100" x2="124" y2="100" stroke-width="4.7" />
+    <line x1="100" y1="76" x2="100" y2="90" stroke-width="4.7" />
+    <line x1="100" y1="110" x2="100" y2="124" stroke-width="4.7" />
+    <!-- Center Dot -->
+    <circle cx="100" cy="100" r="4.2" fill="#E46931" stroke="none" />
+  </g>
+</svg>
